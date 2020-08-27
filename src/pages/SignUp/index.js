@@ -1,5 +1,6 @@
 import React, { useState, UseContext, useContext } from "react";
 import { Platform } from "react-native";
+
 import { AuthContext } from "../../contexts/auth";
 
 import {
@@ -16,9 +17,12 @@ export default function SignIn() {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user } = useContext(AuthContext);
 
-  console.log(user.nome);
+  const { signUp } = useContext(AuthContext);
+
+  function handleSignUp() {
+    signUp(email, password, nombre);
+  }
 
   return (
     <Background>
@@ -55,7 +59,7 @@ export default function SignIn() {
           />
         </AreaInput>
 
-        <SubmitButton>
+        <SubmitButton onPress={handleSignUp}>
           <SubmitText>Registrar</SubmitText>
         </SubmitButton>
       </Container>
