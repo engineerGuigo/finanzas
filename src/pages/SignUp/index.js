@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, UseContext, useContext } from "react";
 import { Platform } from "react-native";
+import { AuthContext } from "../../contexts/auth";
 
 import {
   Background,
@@ -12,9 +13,12 @@ import {
 } from "../SignIn/styles";
 
 export default function SignIn() {
+  const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [nombre, setNombre] = useState("");
+  const { user } = useContext(AuthContext);
+
+  console.log(user.nome);
 
   return (
     <Background>
