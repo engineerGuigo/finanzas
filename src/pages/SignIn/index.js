@@ -20,8 +20,11 @@ export default function SignIn() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signIn } = useContext(AuthContext);
 
-  function handleLogin() {}
+  function handleLogin() {
+    signIn(email, password);
+  }
 
   return (
     <Background>
@@ -40,7 +43,7 @@ export default function SignIn() {
 
         <AreaInput>
           <Input
-            placeholder="Contraseña"
+            placeholder="Senha"
             autoCorrect={false}
             autoCapitalize="none"
             value={password}
@@ -49,11 +52,11 @@ export default function SignIn() {
         </AreaInput>
 
         <SubmitButton onPress={handleLogin}>
-          <SubmitText>Entrar</SubmitText>
+          <SubmitText>Acessar</SubmitText>
         </SubmitButton>
 
         <Link onPress={() => navigation.navigate("SignUp")}>
-          <LinkText>Crear una cuenta!</LinkText>
+          <LinkText>Criar uma conta!</LinkText>
         </Link>
       </Container>
     </Background>
