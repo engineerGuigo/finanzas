@@ -43,7 +43,7 @@ export default function SignIn() {
 
         <AreaInput>
           <Input
-            placeholder="Senha"
+            placeholder="Contraseña"
             autoCorrect={false}
             autoCapitalize="none"
             value={password}
@@ -52,7 +52,7 @@ export default function SignIn() {
         </AreaInput>
 
         <SubmitButton onPress={handleLogin}>
-          <SubmitText>Acessar</SubmitText>
+          <SubmitText>Entrar</SubmitText>
         </SubmitButton>
 
         <Link onPress={() => navigation.navigate("SignUp")}>
