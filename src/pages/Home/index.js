@@ -9,10 +9,10 @@ import { Background, Container, Nombre, Saldo, Title, List } from "./styles";
 
 export default function Home() {
   const [historial, setHistorial] = useState([
-    { key: "1", tipo: "ingreso", valor: 1200 },
+    { key: "1", tipo: "ingresos", valor: 1200 },
     { key: "2", tipo: "gastos", valor: 200 },
-    { key: "3", tipo: "ingreso", valor: 32 },
-    { key: "4", tipo: "ingreso", valor: 67.82 },
+    { key: "3", tipo: "ingresos", valor: 32 },
+    { key: "4", tipo: "ingresos", valor: 67.82 },
   ]);
   const { user, signOut } = useContext(AuthContext);
 
@@ -20,7 +20,7 @@ export default function Home() {
     <Background>
       <Header />
       <Container>
-        <Nombre>Rodrigo</Nombre>
+        <Nombre>{user && user.nombre}</Nombre>
         <Saldo>$ 5,000.00</Saldo>
       </Container>
 
