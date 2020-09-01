@@ -64,7 +64,7 @@ export default function New() {
     await user.once("value").then((snapshot) => {
       let saldo = parseFloat(snapshot.val().saldo);
 
-      tipo === "despesa"
+      tipo === "gastos"
         ? (saldo -= parseFloat(valor))
         : (saldo += parseFloat(valor));
 
