@@ -1,20 +1,30 @@
 import React from "react";
-import { Picker as RNPickerSelect } from "@react-native-community/picker";
+import RNPickerSelect from "react-native-picker-select";
 import { PickerView } from "./styles";
 
-export default function Picker({ onChange, tipo }) {
+export default function Picker({ onChange }) {
   return (
     <PickerView>
       <RNPickerSelect
         style={{
-          width: "100%",
+          inputIOS: {
+            height: 50,
+            padding: 5,
+            backgroundColor: "#FFF",
+            fontSize: 16,
+          },
         }}
-        selectedValue={tipo}
-        onValueChange={(valor) => onChange(valor)}
-      >
-        <RNPickerSelect.Item label="Ingresos" value="ingresos" />
-        <RNPickerSelect.Item label="Gastos" value="gastos" />
-      </RNPickerSelect>
+        placeholder={{
+          label: "Selecciona el tipo",
+          color: "#222",
+          value: null,
+        }}
+        onValueChange={(tipo) => onChange(tipo)}
+        items={[
+          { label: "Ingresos", value: "ingresos", color: "#222" },
+          { label: "Gastos", value: "gastos", color: "#222" },
+        ]}
+      />
     </PickerView>
   );
 }
