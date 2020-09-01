@@ -61,7 +61,7 @@ export default function SignIn() {
         </SubmitButton>
 
         <Link onPress={() => navigation.navigate("SignUp")}>
-          <LinkText>Crear una cuenta!</LinkText>
+          <LinkText>¡Crear una cuenta!</LinkText>
         </Link>
       </Container>
     </Background>

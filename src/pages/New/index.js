@@ -29,7 +29,7 @@ export default function New() {
     }
 
     Alert.alert(
-      "Confirmando dados",
+      "Confirmando datos",
       `Tipo ${tipo} - Valor: ${parseFloat(valor)} `,
       [
         {

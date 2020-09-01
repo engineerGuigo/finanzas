@@ -15,7 +15,7 @@ export default function Picker({ onChange }) {
           },
         }}
         placeholder={{
-          label: "Selecione o tipo",
+          label: "Selecciona el tipo",
           color: "#222",
           value: null,
         }}
