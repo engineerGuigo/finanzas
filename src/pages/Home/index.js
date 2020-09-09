@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Alert } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import firebase from "../../services/firebaseConnection";
 import { format, isBefore } from "date-fns";
 
@@ -7,7 +7,17 @@ import { AuthContext } from "../../contexts/auth";
 import Header from "../../components/Header";
 import HistorialList from "../../components/HistorialList";
 
-import { Background, Container, Nombre, Saldo, Title, List } from "./styles";
+import Icon from "react-native-vector-icons/MaterialIcons";
+
+import {
+  Background,
+  Container,
+  Nombre,
+  Saldo,
+  Title,
+  List,
+  Area,
+} from "./styles";
 
 export default function Home() {
   const [historial, setHistorial] = useState([]);
@@ -15,6 +25,8 @@ export default function Home() {
 
   const { user } = useContext(AuthContext);
   const uid = user && user.uid;
+
+  const [newData, setNewDate] = useState(new Date());
 
   useEffect(() => {
     async function loadList() {
@@ -118,7 +130,12 @@ export default function Home() {
         </Saldo>
       </Container>
 
-      <Title>Ultimas movimentaciones</Title>
+      <Area>
+        <TouchableOpacity>
+          <Icon name="event" color="#FFF" size={30} />
+        </TouchableOpacity>
+        <Title>Ultimas movimentaciones</Title>
+      </Area>
 
       <List
         showsVerticalScrollIndicator={false}

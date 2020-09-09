@@ -11,22 +11,27 @@ export const Container = styled.View`
 `;
 
 export const Nombre = styled.Text`
-  font-size: 19px;
+  font-size: 20px;
   color: #fff;
   font-style: italic;
 `;
 
 export const Saldo = styled.Text`
-  margin-top: 5px;
   font-size: 30px;
   color: #fff;
   font-weight: bold;
 `;
 
 export const Title = styled.Text`
-  margin-left: 15px;
+  margin: 5px;
   color: #00b94a;
   margin-bottom: 10px;
+  font-size: 20px;
+`;
+
+export const Area = styled.View`
+  flex-direction: row;
+  margin-left: 15px;
 `;
 
 export const List = styled.FlatList.attrs({
