@@ -56,7 +56,7 @@ export default function New() {
       .set({
         tipo: tipo,
         valor: parseFloat(valor),
-        date: format(new Date(), "dd/MM/yy"),
+        date: format(new Date(), "dd/MM/yyyy"),
       });
 
     //Actualizar nuestro saldo

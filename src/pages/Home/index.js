@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Alert } from "react-native";
 import firebase from "../../services/firebaseConnection";
-import { format, isPast } from "date-fns";
+import { format, isBefore } from "date-fns";
 
 import { AuthContext } from "../../contexts/auth";
 import Header from "../../components/Header";
@@ -53,9 +53,23 @@ export default function Home() {
   }, []);
 
   function handleDelete(data) {
+    const [diaItem, mesItem, anoItem] = data.date.split("/");
+    const dateItem = new Date(`${anoItem}/${mesItem}/${diaItem}`);
+    console.log(dateItem);
+
+    const formatDiaHoje = format(new Date(), "dd/MM/yyyy");
+    const [diaHoy, mesHoy, anoHoy] = formatDiaHoje.split("/");
+    const dateHoy = new Date(`${anoHoy}/${mesHoy}/${diaHoy}`);
+    console.log(dateHoy);
+
+    if (isBefore(dateItem, dateHoy)) {
+      alert("¡No puedes eliminar un registro antiguo!");
+      return;
+    }
+
     Alert.alert(
-      "¡Cuidado!",
-      `Deseas excluir ${data.tipo} ? - Valor: ${data.valor}`,
+      "Cuidado!",
+      `Deseas eliminar ${data.tipo} ? - Valor: ${data.valor}`,
       [
         {
           text: "Cancelar",
