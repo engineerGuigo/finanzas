@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import { View, Text, Button } from "react-native";
+import { Alert } from "react-native";
 import firebase from "../../services/firebaseConnection";
-import { format } from "date-fns";
+import { format, isPast } from "date-fns";
 
 import { AuthContext } from "../../contexts/auth";
 import Header from "../../components/Header";
@@ -41,6 +41,7 @@ export default function Home() {
               key: childItem.key,
               tipo: childItem.val().tipo,
               valor: childItem.val().valor,
+              date: childItem.val().date,
             };
 
             setHistorial((oldArray) => [...oldArray, list].reverse());
@@ -51,13 +52,55 @@ export default function Home() {
     loadList();
   }, []);
 
+  function handleDelete(data) {
+    Alert.alert(
+      "¡Cuidado!",
+      `Deseas excluir ${data.tipo} ? - Valor: ${data.valor}`,
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Continuar",
+          onPress: () => handleDeleteSuccess(data),
+        },
+      ]
+    );
+  }
+
+  async function handleDeleteSuccess(data) {
+    await firebase
+      .database()
+      .ref("historial")
+      .child(uid)
+      .child(data.key)
+      .remove()
+      .then(async () => {
+        let saldoActual = saldo;
+        data.tipo === "gastos"
+          ? (saldoActual += parseFloat(data.valor))
+          : (saldoActual -= parseFloat(data.valor));
+
+        await firebase
+          .database()
+          .ref("users")
+          .child(uid)
+          .child("saldo")
+          .set(saldoActual);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <Background>
       <Header />
       <Container>
         <Nombre>{user && user.nombre}</Nombre>
         <Saldo>
-          R$ {saldo.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")}
+          $ {saldo.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")}
         </Saldo>
       </Container>
 
@@ -67,7 +110,9 @@ export default function Home() {
         showsVerticalScrollIndicator={false}
         data={historial}
         keyExtractor={(item) => item.key}
-        renderItem={({ item }) => <HistorialList data={item} />}
+        renderItem={({ item }) => (
+          <HistorialList data={item} deleteItem={handleDelete} />
+        )}
       />
     </Background>
   );
