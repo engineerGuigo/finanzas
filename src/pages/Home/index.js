@@ -8,6 +8,7 @@ import Header from "../../components/Header";
 import HistorialList from "../../components/HistorialList";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
+import DatePicker from "../../components/DatePicker";
 
 import {
   Background,
@@ -26,7 +27,8 @@ export default function Home() {
   const { user } = useContext(AuthContext);
   const uid = user && user.uid;
 
-  const [newData, setNewDate] = useState(new Date());
+  const [newDate, setNewDate] = useState(new Date());
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     async function loadList() {
@@ -62,7 +64,7 @@ export default function Home() {
     }
 
     loadList();
-  }, []);
+  }, [newDate]);
 
   function handleDelete(data) {
     const [diaItem, mesItem, anoItem] = data.date.split("/");
@@ -120,6 +122,20 @@ export default function Home() {
       });
   }
 
+  function handleShowPicker() {
+    setShow(true);
+  }
+
+  function handleClose() {
+    setShow(false);
+  }
+
+  const onChange = (date) => {
+    setShow(Platform.OS === "ios");
+    setNewDate(date);
+    console.log(date);
+  };
+
   return (
     <Background>
       <Header />
@@ -131,7 +147,7 @@ export default function Home() {
       </Container>
 
       <Area>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleShowPicker}>
           <Icon name="event" color="#FFF" size={30} />
         </TouchableOpacity>
         <Title>Ultimas movimentaciones</Title>
@@ -145,6 +161,10 @@ export default function Home() {
           <HistorialList data={item} deleteItem={handleDelete} />
         )}
       />
+
+      {show && (
+        <DatePicker onClose={handleClose} date={newDate} onChange={onChange} />
+      )}
     </Background>
   );
 }
