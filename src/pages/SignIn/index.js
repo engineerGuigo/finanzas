@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react";
 import { Platform, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { AuthContext } from "../../contexts/auth";
+import { LinearGradient } from "expo-linear-gradient";
 
 import {
-  Background,
   Container,
   Logo,
   AreaInput,
@@ -27,7 +27,13 @@ export default function SignIn() {
   }
 
   return (
-    <Background>
+    <LinearGradient
+      colors={["#464769", "#1B1A1F"]}
+      style={{
+        flex: 1,
+        paddingTop: 50,
+      }}
+    >
       <Container behavior={Platform.OS === "ios" ? "padding" : ""} enabled>
         <Logo source={require("../../assets/Logo.png")} />
 
@@ -64,6 +70,6 @@ export default function SignIn() {
           <LinkText>¡Crear una cuenta!</LinkText>
         </Link>
       </Container>
-    </Background>
+    </LinearGradient>
   );
 }

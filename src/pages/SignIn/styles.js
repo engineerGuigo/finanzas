@@ -1,9 +1,5 @@
 import styled from "styled-components/native";
 
-export const Background = styled.View`
-  flex: 1;
-  background-color: #131313;
-`;
 export const Container = styled.KeyboardAvoidingView`
   flex: 1;
   align-items: center;
@@ -30,7 +26,7 @@ export const Input = styled.TextInput.attrs({
 export const SubmitButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
-    background-color: #00b94a;
+    background-color: #228b22;
     width: 90%
     height: 45px;
     border-radius: 7px;

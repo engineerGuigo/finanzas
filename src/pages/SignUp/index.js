@@ -1,10 +1,10 @@
 import React, { useState, UseContext, useContext } from "react";
 import { Platform, ActivityIndicator } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { AuthContext } from "../../contexts/auth";
 
 import {
-  Background,
   Container,
   Logo,
   AreaInput,
@@ -25,7 +25,13 @@ export default function SignIn() {
   }
 
   return (
-    <Background>
+    <LinearGradient
+      colors={["#464769", "#1B1A1F"]}
+      style={{
+        flex: 1,
+        paddingTop: 50,
+      }}
+    >
       <Container behavior={Platform.OS === "ios" ? "padding" : ""} enabled>
         <Logo source={require("../../assets/Logo.png")} />
 
@@ -68,6 +74,6 @@ export default function SignIn() {
           )}
         </SubmitButton>
       </Container>
-    </Background>
+    </LinearGradient>
   );
 }
