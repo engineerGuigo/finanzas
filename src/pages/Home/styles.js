@@ -1,10 +1,5 @@
 import styled from "styled-components/native";
 
-export const Background = styled.View`
-  flex: 1;
-  background-color: #131313;
-`;
-
 export const Container = styled.View`
   margin-left: 15px;
   margin-bottom: 25px;

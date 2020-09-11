@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { useNavigation } from "@react-navigation/native";
 import firebase from "../../services/firebaseConnection";
 import { AuthContext } from "../../contexts/auth";
+import { LinearGradient } from "expo-linear-gradient";
 
 import Header from "../../components/Header";
 import { Background, Input, SubmitButton, SubmitText } from "./styles";
@@ -77,7 +78,13 @@ export default function New() {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <Background>
+      <LinearGradient
+        colors={["#464769", "#1B1A1F"]}
+        style={{
+          flex: 1,
+          paddingTop: 50,
+        }}
+      >
         <Header />
 
         <SafeAreaView style={{ alignItems: "center" }}>
@@ -96,7 +103,7 @@ export default function New() {
             <SubmitText>Registrar</SubmitText>
           </SubmitButton>
         </SafeAreaView>
-      </Background>
+      </LinearGradient>
     </TouchableWithoutFeedback>
   );
 }

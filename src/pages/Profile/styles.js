@@ -2,7 +2,6 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #131313;
   align-items: center;
 `;
 
@@ -12,6 +11,7 @@ export const Nombre = styled.Text`
   margin-top: 25px;
   margin-bottom: 25px;
   color: #fff;
+  align-items: center;
 `;
 
 export const NewLink = styled.TouchableOpacity`

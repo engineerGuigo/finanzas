@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Alert, TouchableOpacity } from "react-native";
 import firebase from "../../services/firebaseConnection";
 import { format, isBefore } from "date-fns";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { AuthContext } from "../../contexts/auth";
 import Header from "../../components/Header";
@@ -10,15 +11,7 @@ import HistorialList from "../../components/HistorialList";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import DatePicker from "../../components/DatePicker";
 
-import {
-  Background,
-  Container,
-  Nombre,
-  Saldo,
-  Title,
-  List,
-  Area,
-} from "./styles";
+import { Container, Nombre, Saldo, Title, List, Area } from "./styles";
 
 export default function Home() {
   const [historial, setHistorial] = useState([]);
@@ -137,7 +130,13 @@ export default function Home() {
   };
 
   return (
-    <Background>
+    <LinearGradient
+      colors={["#464769", "#1B1A1F"]}
+      style={{
+        flex: 1,
+        paddingTop: 50,
+      }}
+    >
       <Header />
       <Container>
         <Nombre>{user && user.nombre}</Nombre>
@@ -165,6 +164,6 @@ export default function Home() {
       {show && (
         <DatePicker onClose={handleClose} date={newDate} onChange={onChange} />
       )}
-    </Background>
+    </LinearGradient>
   );
 }
