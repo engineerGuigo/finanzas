@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Platform, TouchableOpacity } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import { Container } from "./styles";
-import { Header } from "react-native/Libraries/NewAppScreen";
+import { Container, Header } from "./styles";
 
 export default function DatePicker({ date, onClose, onChange }) {
   const [dateNow, setDateNow] = useState(new Date(date));
@@ -12,7 +11,7 @@ export default function DatePicker({ date, onClose, onChange }) {
       {Platform.OS === "ios" && (
         <Header>
           <TouchableOpacity onPress={onClose}>
-            <Text>Fechar</Text>
+            <Text>Cerrar</Text>
           </TouchableOpacity>
         </Header>
       )}
